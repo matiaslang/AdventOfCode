@@ -1,21 +1,15 @@
 import json
 import re
 
-i = open('data.json')
-##a = re.findall("\d+", i)
-a = []
-b = []
 
-for j in i:
-    print(re.match(r"\d+", j))
-    a.append(re.match(r"\d+", j))
+with open('data.json', 'r') as data_file:
+    json_data = data_file.read()
+
+i = json.loads(json_data)
+i = i["data"]
 
 
-for number in a:
-    print(number)
-
-for h in a:
-    for k in a:
-        if(h is not None and k is not None):
-            if(int(h) + int(k) == 2020):
-                print(h * k)
+for h in i:
+    for k in i:
+        if(int(h) + int(k) == 2020):
+            print(h * k)
