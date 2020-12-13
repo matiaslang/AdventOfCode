@@ -2,13 +2,33 @@ import json
 import re
 
 
+def checkCharInWord(num, word, rule):
+    if(num >= len(word)):
+        return True
+    if(word[num + 1] == rule):
+        return True
+    return False
+
+
 def passwordFunction(ruleLetter, ruleNumber, word):
     num = re.findall("\d{1,2}", ruleNumber.group(0))
-    firstNum = num[0]
-    secondNum = num[1]
+    firstNum = int(num[0])
+    secondNum = int(num[1])
     occurences = word[0].count(ruleLetter.group(0))
-    if(int(occurences) >= int(firstNum) and int(occurences) <= int(secondNum)):
+    if(checkCharInWord(firstNum, str(word), ruleLetter.group(0)) and not checkCharInWord(secondNum, str(word), ruleLetter.group(0))):
         return True
+    if(checkCharInWord(secondNum, str(word), ruleLetter.group(0)) and not checkCharInWord(firstNum, str(word), ruleLetter.group(0))):
+        return True
+    print(num)
+    print("rule")
+    print(ruleLetter.group(0))
+    print("firstNum")
+    print(firstNum)
+    print("secondNum")
+    print(secondNum)
+    print("word:")
+    print(word)
+    print("\n\n")
     return False
 
 
